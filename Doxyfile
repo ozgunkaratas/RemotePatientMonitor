@@ -1,0 +1,71 @@
+# Doxygen configuration for RemotePatientMonitor.
+# Only settings that differ from Doxygen's defaults are listed.
+#
+# Generate:  doxygen            (run in the repository root)
+# Open:      build-docs/html/index.html
+# Graphs need Graphviz (the `dot` program) on the PATH.
+
+#---------------------------------------------------------------------------
+# Project
+#---------------------------------------------------------------------------
+PROJECT_NAME           = "RemotePatientMonitor"
+PROJECT_BRIEF          = "Remote patient monitoring on Arduino Mega, Raspberry Pi and a desktop central station"
+OUTPUT_DIRECTORY       = build-docs
+CREATE_SUBDIRS         = NO
+
+#---------------------------------------------------------------------------
+# Input
+#---------------------------------------------------------------------------
+INPUT                  = README.md \
+                         docs/GETTING_STARTED.md \
+                         protocol \
+                         gateway/src \
+                         gateway/tests \
+                         firmware/mega/src
+FILE_PATTERNS          = *.h *.hpp *.c *.cpp *.md
+RECURSIVE              = YES
+USE_MDFILE_AS_MAINPAGE = README.md
+IMAGE_PATH             = docs/images
+
+#---------------------------------------------------------------------------
+# What to extract
+#---------------------------------------------------------------------------
+# EXTRACT_ALL = YES shows every function, documented or not, while the
+# documentation is being written. Switch it to NO once everything is
+# documented: Doxygen then warns about each undocumented function.
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+EXTRACT_ANON_NSPACES   = YES
+WARN_NO_PARAMDOC       = YES
+
+# Parse both sides of `#ifdef _WIN32`, so the Linux and the Windows serial
+# port code both appear.
+ENABLE_PREPROCESSING   = NO
+
+#---------------------------------------------------------------------------
+# Source browsing and cross-references
+#---------------------------------------------------------------------------
+SOURCE_BROWSER         = YES
+STRIP_CODE_COMMENTS    = NO
+REFERENCED_BY_RELATION = YES
+REFERENCES_RELATION    = YES
+
+#---------------------------------------------------------------------------
+# Output
+#---------------------------------------------------------------------------
+GENERATE_HTML          = YES
+GENERATE_TREEVIEW      = YES
+SEARCHENGINE           = YES
+GENERATE_LATEX         = NO
+
+#---------------------------------------------------------------------------
+# Graphs (Graphviz)
+#---------------------------------------------------------------------------
+HAVE_DOT               = YES
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+INCLUDE_GRAPH          = YES
+INCLUDED_BY_GRAPH      = YES
+DOT_IMAGE_FORMAT       = svg
+INTERACTIVE_SVG        = YES

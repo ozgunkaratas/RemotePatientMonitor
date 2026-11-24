@@ -1,0 +1,10 @@
+# Stable device name /dev/mega for the Arduino Mega, whichever ttyACM number it gets.
+# Install: sudo cp 99-rpm-mega.rules /etc/udev/rules.d/ && sudo udevadm control --reload && sudo udevadm trigger
+# Check your board's IDs with: udevadm info -a -n /dev/ttyACM0 | grep -E 'idVendor|idProduct' | head -2
+
+# Genuine Arduino Mega 2560 (ATmega16U2 USB chip)
+SUBSYSTEM=="tty", ATTRS{idVendor}=="2341", ATTRS{idProduct}=="0042", SYMLINK+="mega", GROUP="dialout", MODE="0660"
+SUBSYSTEM=="tty", ATTRS{idVendor}=="2341", ATTRS{idProduct}=="0010", SYMLINK+="mega", GROUP="dialout", MODE="0660"
+
+# Clones with a CH340 USB chip show up as /dev/ttyUSB0 instead; uncomment if yours is one
+#SUBSYSTEM=="tty", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7523", SYMLINK+="mega", GROUP="dialout", MODE="0660"
